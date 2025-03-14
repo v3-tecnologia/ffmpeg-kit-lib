@@ -20,9 +20,9 @@
 /*
  * This file is the modified version of thread_queue.c file living in ffmpeg source code under the fftools folder. We
  * manually update it each time we depend on a new ffmpeg version. Below you can see the list of changes applied
- * by us to develop ffmpeg-kit library.
+ * by us to develop ffmpeg-kit-lib library.
  *
- * ffmpeg-kit changes by ARTHENICA LTD
+ * ffmpeg-kit-lib changes by ARTHENICA LTD
  *
  * 07.2023
  * --------------------------------------------------------

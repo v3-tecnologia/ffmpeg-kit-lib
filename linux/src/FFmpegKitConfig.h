@@ -45,7 +45,7 @@ namespace ffmpegkit {
             static constexpr const char* FFmpegKitVersion = "6.0";
 
             /**
-             * Prefix of named pipes created by ffmpeg-kit.
+             * Prefix of named pipes created by ffmpeg-kit-lib.
              */
             static constexpr const char* FFmpegKitNamedPipePrefix = "fk_pipe_";
 

@@ -306,7 +306,7 @@ class FFmpegKitInitializer {
   }
 
   Future<void> _initialize() async {
-    print("Loading ffmpeg-kit-flutter.");
+    print("Loading ffmpeg-kit-lib-flutter.");
 
     _eventChannel.receiveBroadcastStream().listen(_onEvent, onError: _onError);
 
@@ -322,6 +322,6 @@ class FFmpegKitInitializer {
     final isLTSPostfix = (await FFmpegKitConfig.isLTSBuild()) ? "-lts" : "";
 
     final fullVersion = "$platform-$packageName-$arch-$version$isLTSPostfix";
-    print("Loaded ffmpeg-kit-flutter-$fullVersion.");
+    print("Loaded ffmpeg-kit-lib-flutter-$fullVersion.");
   }
 }

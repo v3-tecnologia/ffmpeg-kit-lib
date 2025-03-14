@@ -12,7 +12,7 @@ android {
         targetSdk 33
         versionCode 240600
         versionName "6.0"
-        project.archivesBaseName = "ffmpeg-kit"
+        project.archivesBaseName = "ffmpeg-kit-lib"
         consumerProguardFiles "consumer-rules.pro"
     }
 

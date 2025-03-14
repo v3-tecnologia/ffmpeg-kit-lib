@@ -32,7 +32,7 @@ FFMPEG_INCLUDES := $(MY_LOCAL_PATH)/../../prebuilt/$(MY_BUILD_DIR)/ffmpeg/includ
 
 MY_ARM_MODE := arm
 MY_ARM_NEON := false
-LOCAL_PATH := $(MY_LOCAL_PATH)/../ffmpeg-kit-android-lib/src/main/cpp
+LOCAL_PATH := $(MY_LOCAL_PATH)/../ffmpeg-kit-lib-android-lib/src/main/cpp
 
 # DEFINE ARCH FLAGS
 ifeq ($(TARGET_ARCH_ABI), armeabi-v7a)
@@ -84,7 +84,7 @@ MY_BUILD_GENERIC_FFMPEG_KIT := true
 
 ifeq ($(MY_ARMV7_NEON), true)
     include $(CLEAR_VARS)
-    LOCAL_PATH := $(MY_LOCAL_PATH)/../ffmpeg-kit-android-lib/src/main/cpp
+    LOCAL_PATH := $(MY_LOCAL_PATH)/../ffmpeg-kit-lib-android-lib/src/main/cpp
     LOCAL_ARM_MODE := $(MY_ARM_MODE)
     LOCAL_MODULE := ffmpegkit_armv7a_neon
     LOCAL_SRC_FILES := $(MY_SRC_FILES)
@@ -106,7 +106,7 @@ endif
 
 ifeq ($(MY_BUILD_GENERIC_FFMPEG_KIT), true)
     include $(CLEAR_VARS)
-    LOCAL_PATH := $(MY_LOCAL_PATH)/../ffmpeg-kit-android-lib/src/main/cpp
+    LOCAL_PATH := $(MY_LOCAL_PATH)/../ffmpeg-kit-lib-android-lib/src/main/cpp
     LOCAL_ARM_MODE := $(MY_ARM_MODE)
     LOCAL_MODULE := ffmpegkit
     LOCAL_SRC_FILES := $(MY_SRC_FILES)

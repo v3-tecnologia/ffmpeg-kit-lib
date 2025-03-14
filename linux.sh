@@ -144,8 +144,8 @@ if [[ -n ${DISPLAY_HELP} ]]; then
   exit 0
 fi
 
-echo -e "\nBuilding ffmpeg-kit ${BUILD_TYPE_ID}library for Linux\n"
-echo -e -n "INFO: Building ffmpeg-kit ${BUILD_VERSION} ${BUILD_TYPE_ID}library for Linux: " 1>>"${BASEDIR}"/build.log 2>&1
+echo -e "\nBuilding ffmpeg-kit-lib ${BUILD_TYPE_ID}library for Linux\n"
+echo -e -n "INFO: Building ffmpeg-kit-lib ${BUILD_VERSION} ${BUILD_TYPE_ID}library for Linux: " 1>>"${BASEDIR}"/build.log 2>&1
 echo -e "$(date)\n" 1>>"${BASEDIR}"/build.log 2>&1
 
 # PRINT BUILD SUMMARY

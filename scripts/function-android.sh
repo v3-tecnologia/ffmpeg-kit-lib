@@ -17,7 +17,7 @@ enable_default_android_libraries() {
 }
 
 get_ffmpeg_kit_version() {
-  local FFMPEG_KIT_VERSION=$(grep '#define FFMPEG_KIT_VERSION' "${BASEDIR}"/android/ffmpeg-kit-android-lib/src/main/cpp/ffmpegkit.h | grep -Eo '\".*\"' | sed -e 's/\"//g')
+  local FFMPEG_KIT_VERSION=$(grep '#define FFMPEG_KIT_VERSION' "${BASEDIR}"/android/ffmpeg-kit-lib-android-lib/src/main/cpp/ffmpegkit.h | grep -Eo '\".*\"' | sed -e 's/\"//g')
 
   echo "${FFMPEG_KIT_VERSION}"
 }
@@ -33,7 +33,7 @@ under the prebuilt folder.\n"
   echo -e "Usage: ./$COMMAND [OPTION]... [VAR=VALUE]...\n"
   echo -e "Specify environment variables as VARIABLE=VALUE to override default build options.\n"
 
-  display_help_options "  -l, --lts\t\t\tbuild lts packages to support API 16+ devices" "      --api-level=api\t\toverride Android api level" "      --no-ffmpeg-kit-protocols\tdisable custom ffmpeg-kit protocols (saf)"
+  display_help_options "  -l, --lts\t\t\tbuild lts packages to support API 16+ devices" "      --api-level=api\t\toverride Android api level" "      --no-ffmpeg-kit-lib-protocols\tdisable custom ffmpeg-kit-lib protocols (saf)"
   display_help_licensing
 
   echo -e "Architectures:"
@@ -1070,8 +1070,8 @@ set_toolchain_paths() {
 build_android_lts_support() {
 
   # CLEAN OLD BUILD
-  rm -f "${BASEDIR}"/android/ffmpeg-kit-android-lib/src/main/cpp/android_lts_support.o 1>>"${BASEDIR}"/build.log 2>&1
-  rm -f "${BASEDIR}"/android/ffmpeg-kit-android-lib/src/main/cpp/android_lts_support.a 1>>"${BASEDIR}"/build.log 2>&1
+  rm -f "${BASEDIR}"/android/ffmpeg-kit-lib-android-lib/src/main/cpp/android_lts_support.o 1>>"${BASEDIR}"/build.log 2>&1
+  rm -f "${BASEDIR}"/android/ffmpeg-kit-lib-android-lib/src/main/cpp/android_lts_support.a 1>>"${BASEDIR}"/build.log 2>&1
 
   echo -e "INFO: Building android-lts-support objects for ${ARCH}\n" 1>>"${BASEDIR}"/build.log 2>&1
 
@@ -1085,6 +1085,6 @@ build_android_lts_support() {
   LDFLAGS=$(get_ldflags ${LIB_NAME})
 
   # BUILD
-  "${CC}" ${CFLAGS} -Wno-unused-command-line-argument -c "${BASEDIR}"/android/ffmpeg-kit-android-lib/src/main/cpp/android_lts_support.c -o "${BASEDIR}"/android/ffmpeg-kit-android-lib/src/main/cpp/android_lts_support.o ${LDFLAGS} 1>>"${BASEDIR}"/build.log 2>&1
-  "${AR}" rcs "${BASEDIR}"/android/ffmpeg-kit-android-lib/src/main/cpp/libandroidltssupport.a "${BASEDIR}"/android/ffmpeg-kit-android-lib/src/main/cpp/android_lts_support.o 1>>"${BASEDIR}"/build.log 2>&1
+  "${CC}" ${CFLAGS} -Wno-unused-command-line-argument -c "${BASEDIR}"/android/ffmpeg-kit-lib-android-lib/src/main/cpp/android_lts_support.c -o "${BASEDIR}"/android/ffmpeg-kit-lib-android-lib/src/main/cpp/android_lts_support.o ${LDFLAGS} 1>>"${BASEDIR}"/build.log 2>&1
+  "${AR}" rcs "${BASEDIR}"/android/ffmpeg-kit-lib-android-lib/src/main/cpp/libandroidltssupport.a "${BASEDIR}"/android/ffmpeg-kit-lib-android-lib/src/main/cpp/android_lts_support.o 1>>"${BASEDIR}"/build.log 2>&1
 }

@@ -10,7 +10,7 @@
 
 ### 2. Building
 
-Run `android.sh` at project root directory to build `ffmpeg-kit` and `ffmpeg` shared libraries. 
+Run `android.sh` at project root directory to build `ffmpeg-kit-lib` and `ffmpeg` shared libraries. 
 
 Please note that `FFmpegKit` project repository includes the source code of `FFmpegKit` only. `android.sh` needs 
 network connectivity and internet access to `github.com` in order to download the source code of `FFmpeg` and 
@@ -22,7 +22,7 @@ external libraries enabled.
 
 ##### 2.1.1 Android Tools
    - Android SDK Build Tools
-   - Android NDK r22b or later with LLDB and CMake (See [#292](https://github.com/arthenica/ffmpeg-kit/issues/292) if you want to use NDK r23b or later)
+   - Android NDK r22b or later with LLDB and CMake (See [#292](https://github.com/arthenica/ffmpeg-kit-lib/issues/292) if you want to use NDK r23b or later)
 
 ##### 2.1.2 Packages
 
@@ -68,8 +68,8 @@ All libraries created by `android.sh` can be found under the `prebuilt` director
 #### 3.1 Android API
 
 1. Declare `mavenCentral` repository and add `FFmpegKit` dependency to your `build.gradle` in 
-   `ffmpeg-kit-<package name>` pattern. Use one of the `FFmpegKit` package names given in the 
-   project [README](https://github.com/arthenica/ffmpeg-kit).
+   `ffmpeg-kit-lib-<package name>` pattern. Use one of the `FFmpegKit` package names given in the 
+   project [README](https://github.com/arthenica/ffmpeg-kit-lib).
 
     ```yaml
     repositories {
@@ -77,7 +77,7 @@ All libraries created by `android.sh` can be found under the `prebuilt` director
     }
 
     dependencies {
-        implementation 'com.arthenica:ffmpeg-kit-full:6.0-2'
+        implementation 'com.arthenica:ffmpeg-kit-lib-full:6.0-2'
     }
     ```
 
@@ -328,4 +328,4 @@ All libraries created by `android.sh` can be found under the `prebuilt` director
 ### 4. Test Application
 
 You can see how `FFmpegKit` is used inside an application by running `Android` test applications developed under the
-[FFmpegKit Test](https://github.com/arthenica/ffmpeg-kit-test) project.
+[FFmpegKit Test](https://github.com/arthenica/ffmpeg-kit-lib-test) project.

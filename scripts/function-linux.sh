@@ -110,8 +110,8 @@ install_pkg_config_file() {
   fi
 
   # UPDATE PATHS
-  ${SED_INLINE} "s|${LIB_INSTALL_BASE}/ffmpeg-kit|${BASEDIR}/prebuilt/$(get_bundle_directory)/ffmpeg-kit|g" "$DESTINATION" 1>>"${BASEDIR}"/build.log 2>&1 || return 1
-  ${SED_INLINE} "s|${LIB_INSTALL_BASE}/ffmpeg|${BASEDIR}/prebuilt/$(get_bundle_directory)/ffmpeg-kit|g" "$DESTINATION" 1>>"${BASEDIR}"/build.log 2>&1 || return 1
+  ${SED_INLINE} "s|${LIB_INSTALL_BASE}/ffmpeg-kit-lib|${BASEDIR}/prebuilt/$(get_bundle_directory)/ffmpeg-kit-lib|g" "$DESTINATION" 1>>"${BASEDIR}"/build.log 2>&1 || return 1
+  ${SED_INLINE} "s|${LIB_INSTALL_BASE}/ffmpeg|${BASEDIR}/prebuilt/$(get_bundle_directory)/ffmpeg-kit-lib|g" "$DESTINATION" 1>>"${BASEDIR}"/build.log 2>&1 || return 1
 }
 
 get_bundle_directory() {
@@ -128,22 +128,22 @@ create_linux_bundle() {
 
   local FFMPEG_KIT_VERSION=$(get_ffmpeg_kit_version)
 
-  local FFMPEG_KIT_BUNDLE_DIRECTORY="${BASEDIR}/prebuilt/$(get_bundle_directory)/ffmpeg-kit"
-  local FFMPEG_KIT_BUNDLE_INCLUDE_DIRECTORY="${BASEDIR}/prebuilt/$(get_bundle_directory)/ffmpeg-kit/include"
-  local FFMPEG_KIT_BUNDLE_LIB_DIRECTORY="${BASEDIR}/prebuilt/$(get_bundle_directory)/ffmpeg-kit/lib"
-  local FFMPEG_KIT_BUNDLE_PKG_CONFIG_DIRECTORY="${BASEDIR}/prebuilt/$(get_bundle_directory)/ffmpeg-kit/pkgconfig"
+  local FFMPEG_KIT_BUNDLE_DIRECTORY="${BASEDIR}/prebuilt/$(get_bundle_directory)/ffmpeg-kit-lib"
+  local FFMPEG_KIT_BUNDLE_INCLUDE_DIRECTORY="${BASEDIR}/prebuilt/$(get_bundle_directory)/ffmpeg-kit-lib/include"
+  local FFMPEG_KIT_BUNDLE_LIB_DIRECTORY="${BASEDIR}/prebuilt/$(get_bundle_directory)/ffmpeg-kit-lib/lib"
+  local FFMPEG_KIT_BUNDLE_PKG_CONFIG_DIRECTORY="${BASEDIR}/prebuilt/$(get_bundle_directory)/ffmpeg-kit-lib/pkgconfig"
 
   initialize_folder "${FFMPEG_KIT_BUNDLE_INCLUDE_DIRECTORY}"
   initialize_folder "${FFMPEG_KIT_BUNDLE_LIB_DIRECTORY}"
   initialize_folder "${FFMPEG_KIT_BUNDLE_PKG_CONFIG_DIRECTORY}"
 
   # COPY HEADERS
-  cp -r -P "${LIB_INSTALL_BASE}"/ffmpeg-kit/include/* "${BASEDIR}/prebuilt/$(get_bundle_directory)/ffmpeg-kit/include" 2>>"${BASEDIR}"/build.log
-  cp -r -P "${LIB_INSTALL_BASE}"/ffmpeg/include/* "${BASEDIR}/prebuilt/$(get_bundle_directory)/ffmpeg-kit/include" 2>>"${BASEDIR}"/build.log
+  cp -r -P "${LIB_INSTALL_BASE}"/ffmpeg-kit-lib/include/* "${BASEDIR}/prebuilt/$(get_bundle_directory)/ffmpeg-kit-lib/include" 2>>"${BASEDIR}"/build.log
+  cp -r -P "${LIB_INSTALL_BASE}"/ffmpeg/include/* "${BASEDIR}/prebuilt/$(get_bundle_directory)/ffmpeg-kit-lib/include" 2>>"${BASEDIR}"/build.log
 
   # COPY LIBS
-  cp -P "${LIB_INSTALL_BASE}"/ffmpeg-kit/lib/lib* "${BASEDIR}/prebuilt/$(get_bundle_directory)/ffmpeg-kit/lib" 2>>"${BASEDIR}"/build.log
-  cp -P "${LIB_INSTALL_BASE}"/ffmpeg/lib/lib* "${BASEDIR}/prebuilt/$(get_bundle_directory)/ffmpeg-kit/lib" 2>>"${BASEDIR}"/build.log
+  cp -P "${LIB_INSTALL_BASE}"/ffmpeg-kit-lib/lib/lib* "${BASEDIR}/prebuilt/$(get_bundle_directory)/ffmpeg-kit-lib/lib" 2>>"${BASEDIR}"/build.log
+  cp -P "${LIB_INSTALL_BASE}"/ffmpeg/lib/lib* "${BASEDIR}/prebuilt/$(get_bundle_directory)/ffmpeg-kit-lib/lib" 2>>"${BASEDIR}"/build.log
 
   install_pkg_config_file "libavformat.pc"
   install_pkg_config_file "libswresample.pc"
@@ -152,10 +152,10 @@ create_linux_bundle() {
   install_pkg_config_file "libavfilter.pc"
   install_pkg_config_file "libavcodec.pc"
   install_pkg_config_file "libavutil.pc"
-  install_pkg_config_file "ffmpeg-kit.pc"
+  install_pkg_config_file "ffmpeg-kit-lib.pc"
 
   # COPY EXTERNAL LIBRARY LICENSES
-  LICENSE_BASEDIR="${BASEDIR}/prebuilt/$(get_bundle_directory)/ffmpeg-kit/lib"
+  LICENSE_BASEDIR="${BASEDIR}/prebuilt/$(get_bundle_directory)/ffmpeg-kit-lib/lib"
   rm -f "${LICENSE_BASEDIR}"/*.txt 1>>"${BASEDIR}"/build.log 2>&1 || exit 1
   for library in {0..49}; do
     if [[ ${ENABLED_LIBRARIES[$library]} -eq 1 ]]; then
@@ -203,7 +203,7 @@ create_linux_bundle() {
 
   cp "${BASEDIR}"/tools/source/SOURCE "${LICENSE_BASEDIR}"/source.txt 1>>"${BASEDIR}"/build.log 2>&1 || exit 1
 
-  echo -e "DEBUG: Copied the ffmpeg-kit license successfully\n" 1>>"${BASEDIR}"/build.log 2>&1
+  echo -e "DEBUG: Copied the ffmpeg-kit-lib license successfully\n" 1>>"${BASEDIR}"/build.log 2>&1
 }
 
 get_cmake_system_processor() {
@@ -274,7 +274,7 @@ get_app_specific_cflags() {
   ffmpeg)
     APP_FLAGS="-Wno-unused-function"
     ;;
-  ffmpeg-kit)
+  ffmpeg-kit-lib)
     APP_FLAGS="-Wno-unused-function -Wno-pointer-sign -Wno-switch -Wno-deprecated-declarations"
     ;;
   kvazaar)
@@ -332,7 +332,7 @@ get_cxxflags() {
       echo "${FFMPEG_KIT_DEBUG} -stdlib=libstdc++ -std=c++11"
     fi
     ;;
-  ffmpeg-kit)
+  ffmpeg-kit-lib)
     echo "${COMMON_FLAGS}"
     ;;
   srt | tesseract | zimg)
@@ -348,7 +348,7 @@ get_common_linked_libraries() {
   local COMMON_LIBRARIES=""
 
   case $1 in
-  chromaprint | ffmpeg-kit | kvazaar | srt | zimg)
+  chromaprint | ffmpeg-kit-lib | kvazaar | srt | zimg)
     echo "-stdlib=libstdc++ -lstdc++ -lc -lm ${COMMON_LIBRARIES}"
     ;;
   *)
@@ -443,13 +443,13 @@ EOF
 create_ffmpegkit_package_config() {
   local FFMPEGKIT_VERSION="$1"
 
-  cat >"${INSTALL_PKG_CONFIG_DIR}/ffmpeg-kit.pc" <<EOF
-prefix=${LIB_INSTALL_BASE}/ffmpeg-kit
+  cat >"${INSTALL_PKG_CONFIG_DIR}/ffmpeg-kit-lib.pc" <<EOF
+prefix=${LIB_INSTALL_BASE}/ffmpeg-kit-lib
 exec_prefix=\${prefix}
 libdir=\${exec_prefix}/lib
 includedir=\${prefix}/include
 
-Name: ffmpeg-kit
+Name: ffmpeg-kit-lib
 Description: FFmpeg for applications
 Version: ${FFMPEGKIT_VERSION}
 

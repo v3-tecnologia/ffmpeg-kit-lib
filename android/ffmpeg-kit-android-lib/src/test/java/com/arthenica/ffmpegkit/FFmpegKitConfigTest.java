@@ -36,11 +36,11 @@ public class FFmpegKitConfigTest {
 
     private static final String externalLibrariesCommandOutput = "   configuration:\n" +
             "                          --cross-prefix=i686-linux-android-\n" +
-            "                          --sysroot=/Users/taner/Library/Android/sdk/ndk-bundle/toolchains/ffmpeg-kit-i686/sysroot\n" +
-            "                          --prefix=/Users/taner/Projects/ffmpeg-kit/prebuilt/android-x86/ffmpeg\n" +
-            "                          --pkg-config=/usr/local/bin/pkg-config --extra-cflags='-march=i686 -mtune=intel -mssse3 -mfpmath=sse -m32 -Wno-unused-function -fstrict-aliasing -fPIC -DANDROID -D__ANDROID__ -D__ANDROID_API__=21 -O2 -I/Users/taner/Library/Android/sdk/ndk-bundle/toolchains/ffmpeg-kit-i686/sysroot/usr/include -I/Users/taner/Library/Android/sdk/ndk-bundle/toolchains/ffmpeg-kit-i686/sysroot/usr/local/include'\n" +
+            "                          --sysroot=/Users/taner/Library/Android/sdk/ndk-bundle/toolchains/ffmpeg-kit-lib-i686/sysroot\n" +
+            "                          --prefix=/Users/taner/Projects/ffmpeg-kit-lib/prebuilt/android-x86/ffmpeg\n" +
+            "                          --pkg-config=/usr/local/bin/pkg-config --extra-cflags='-march=i686 -mtune=intel -mssse3 -mfpmath=sse -m32 -Wno-unused-function -fstrict-aliasing -fPIC -DANDROID -D__ANDROID__ -D__ANDROID_API__=21 -O2 -I/Users/taner/Library/Android/sdk/ndk-bundle/toolchains/ffmpeg-kit-lib-i686/sysroot/usr/include -I/Users/taner/Library/Android/sdk/ndk-bundle/toolchains/ffmpeg-kit-lib-i686/sysroot/usr/local/include'\n" +
             "                          --extra-cxxflags='-std=c++11 -fno-exceptions -fno-rtti'\n" +
-            "                          --extra-ldflags='-march=i686 -Wl,--gc-sections,--icf=safe -lc -lm -ldl -llog -lc++_shared -L/Users/taner/Library/Android/sdk/ndk-bundle/toolchains/ffmpeg-kit-i686/i686-linux-android/lib -L/Users/taner/Library/Android/sdk/ndk-bundle/toolchains/ffmpeg-kit-i686/sysroot/usr/lib -L/Users/taner/Library/Android/sdk/ndk-bundle/toolchains/ffmpeg-kit-i686/lib -L/Users/taner/Library/Android/sdk/ndk-bundle/platforms/android-21/arch-x86/usr/lib'\n" +
+            "                          --extra-ldflags='-march=i686 -Wl,--gc-sections,--icf=safe -lc -lm -ldl -llog -lc++_shared -L/Users/taner/Library/Android/sdk/ndk-bundle/toolchains/ffmpeg-kit-lib-i686/i686-linux-android/lib -L/Users/taner/Library/Android/sdk/ndk-bundle/toolchains/ffmpeg-kit-lib-i686/sysroot/usr/lib -L/Users/taner/Library/Android/sdk/ndk-bundle/toolchains/ffmpeg-kit-lib-i686/lib -L/Users/taner/Library/Android/sdk/ndk-bundle/platforms/android-21/arch-x86/usr/lib'\n" +
             "                          --enable-version3\n" +
             "                          --arch=i686\n" +
             "                          --cpu=i686\n" +

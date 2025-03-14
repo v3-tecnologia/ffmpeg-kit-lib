@@ -3,7 +3,7 @@
 # ENABLE COMMON FUNCTIONS
 source "${BASEDIR}"/scripts/function-"${FFMPEG_KIT_BUILD_TYPE}".sh 1>>"${BASEDIR}"/build.log 2>&1 || return 1
 
-LIB_NAME="ffmpeg-kit"
+LIB_NAME="ffmpeg-kit-lib"
 
 echo -e "----------------------------------------------------------------" 1>>"${BASEDIR}"/build.log 2>&1
 echo -e "\nINFO: Building ${LIB_NAME} for ${HOST} with the following environment variables\n" 1>>"${BASEDIR}"/build.log 2>&1

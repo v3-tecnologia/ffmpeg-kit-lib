@@ -96,7 +96,7 @@ public class FFmpegKitConfig {
     /**
      * The tag used for logging.
      */
-    static final String TAG = "ffmpeg-kit";
+    static final String TAG = "ffmpeg-kit-lib";
 
     /**
      * Prefix of named pipes created by ffmpeg kit.
@@ -133,7 +133,7 @@ public class FFmpegKitConfig {
 
         Exceptions.registerRootPackage("com.arthenica");
 
-        android.util.Log.i(FFmpegKitConfig.TAG, "Loading ffmpeg-kit.");
+        android.util.Log.i(FFmpegKitConfig.TAG, "Loading ffmpeg-kit-lib.");
 
         final boolean nativeFFmpegTriedAndFailed = NativeLoader.loadFFmpeg();
 
@@ -173,7 +173,7 @@ public class FFmpegKitConfig {
         safFileDescriptorMap = new SparseArray<>();
         globalLogRedirectionStrategy = LogRedirectionStrategy.PRINT_LOGS_WHEN_NO_CALLBACKS_DEFINED;
 
-        android.util.Log.i(FFmpegKitConfig.TAG, String.format("Loaded ffmpeg-kit-%s-%s-%s-%s.", NativeLoader.loadPackageName(), NativeLoader.loadAbi(), NativeLoader.loadVersion(), NativeLoader.loadBuildDate()));
+        android.util.Log.i(FFmpegKitConfig.TAG, String.format("Loaded ffmpeg-kit-lib-%s-%s-%s-%s.", NativeLoader.loadPackageName(), NativeLoader.loadAbi(), NativeLoader.loadVersion(), NativeLoader.loadBuildDate()));
     }
 
     /**

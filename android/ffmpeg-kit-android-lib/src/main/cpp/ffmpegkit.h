@@ -30,7 +30,7 @@
 #define FFMPEG_KIT_VERSION "6.0"
 
 /** Defines tag used for Android logging. */
-#define LIB_NAME "ffmpeg-kit"
+#define LIB_NAME "ffmpeg-kit-lib"
 
 /** Verbose Android logging macro. */
 #define LOGV(...) __android_log_print(ANDROID_LOG_VERBOSE, LIB_NAME, __VA_ARGS__)

@@ -770,7 +770,7 @@ int executeFFprobe(const long sessionId, const std::shared_ptr<std::list<std::st
 
 void* ffmpegKitInitialize() {
     std::call_once(ffmpegKitInitializerFlag, [](){
-        std::cout << "Loading ffmpeg-kit." << std::endl;
+        std::cout << "Loading ffmpeg-kit-lib." << std::endl;
 
         sessionHistorySize = 10;
 
@@ -791,7 +791,7 @@ void* ffmpegKitInitialize() {
 
         ffmpegkit::FFmpegKitConfig::enableRedirection();
 
-        std::cout << "Loaded ffmpeg-kit-" << ffmpegkit::Packages::getPackageName() << "-" << ffmpegkit::ArchDetect::getArch() << "-" << ffmpegkit::FFmpegKitConfig::getVersion() << "-" << ffmpegkit::FFmpegKitConfig::getBuildDate() << "." << std::endl;
+        std::cout << "Loaded ffmpeg-kit-lib-" << ffmpegkit::Packages::getPackageName() << "-" << ffmpegkit::ArchDetect::getArch() << "-" << ffmpegkit::FFmpegKitConfig::getVersion() << "-" << ffmpegkit::FFmpegKitConfig::getBuildDate() << "." << std::endl;
     });
 
     return NULL;

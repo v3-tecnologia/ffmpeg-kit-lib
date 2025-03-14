@@ -1,6 +1,6 @@
 # main section
-title: ffmpeg-kit
-baseurl: "/ffmpeg-kit"
+title: ffmpeg-kit-lib
+baseurl: "/ffmpeg-kit-lib"
 locale: "en"
 theme: jekyll-theme-minimal
 markdown: kramdown

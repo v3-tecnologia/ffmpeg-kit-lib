@@ -39,7 +39,7 @@
 NSString* const FFmpegKitVersion = @"6.0";
 
 /**
- * Prefix of named pipes created by ffmpeg-kit.
+ * Prefix of named pipes created by ffmpeg-kit-lib.
  */
 NSString* const FFmpegKitNamedPipePrefix = @"fk_pipe_";
 

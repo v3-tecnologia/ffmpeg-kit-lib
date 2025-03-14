@@ -77,7 +77,7 @@ import io.flutter.plugin.common.PluginRegistry;
 
 public class FFmpegKitFlutterPlugin implements FlutterPlugin, ActivityAware, MethodCallHandler, EventChannel.StreamHandler, PluginRegistry.ActivityResultListener {
 
-    public static final String LIBRARY_NAME = "ffmpeg-kit-flutter";
+    public static final String LIBRARY_NAME = "ffmpeg-kit-lib-flutter";
     public static final String PLATFORM_NAME = "android";
 
     private static final String METHOD_CHANNEL = "flutter.arthenica.com/ffmpeg_kit";

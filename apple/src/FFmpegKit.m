@@ -27,11 +27,11 @@
 @implementation FFmpegKit
 
 + (void)initialize {
-    NSLog(@"Loading ffmpeg-kit.\n");
+    NSLog(@"Loading ffmpeg-kit-lib.\n");
 
     [FFmpegKitConfig class];
 
-    NSLog(@"Loaded ffmpeg-kit-%@-%@-%@-%@.\n", [Packages getPackageName], [ArchDetect getArch], [FFmpegKitConfig getVersion], [FFmpegKitConfig getBuildDate]);
+    NSLog(@"Loaded ffmpeg-kit-lib-%@-%@-%@-%@.\n", [Packages getPackageName], [ArchDetect getArch], [FFmpegKitConfig getVersion], [FFmpegKitConfig getBuildDate]);
 }
 
 + (FFmpegSession*)executeWithArguments:(NSArray*)arguments {

@@ -1643,7 +1643,7 @@ print_enabled_xcframeworks() {
     echo -n "${FFMPEG_LIB}, "
   done
 
-  echo "ffmpeg-kit"
+  echo "ffmpeg-kit-lib"
 }
 
 print_reconfigure_requested_libraries() {

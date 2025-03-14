@@ -116,7 +116,7 @@ get_size_optimization_cflags() {
     x264 | x265)
       ARCH_OPTIMIZATION="-Oz -Wno-ignored-optimization-argument"
       ;;
-    ffmpeg | ffmpeg-kit)
+    ffmpeg | ffmpeg-kit-lib)
       ARCH_OPTIMIZATION="-Oz -Wno-ignored-optimization-argument"
       ;;
     *)
@@ -181,7 +181,7 @@ get_app_specific_cflags() {
   ffmpeg)
     APP_FLAGS="-Wno-unused-function -Wno-deprecated-declarations"
     ;;
-  ffmpeg-kit)
+  ffmpeg-kit-lib)
     APP_FLAGS="-std=c99 -Wno-unused-function -Wall -Wno-deprecated-declarations -Wno-pointer-sign -Wno-switch -Wno-unused-result -Wno-unused-variable -DPIC -fobjc-arc"
     ;;
   gnutls)
@@ -309,7 +309,7 @@ get_size_optimization_ldflags() {
   case ${ARCH} in
   arm64)
     case $1 in
-    ffmpeg | ffmpeg-kit)
+    ffmpeg | ffmpeg-kit-lib)
       echo "-Oz -dead_strip"
       ;;
     *)
@@ -362,7 +362,7 @@ get_ldflags() {
   fi
 
   case $1 in
-  ffmpeg-kit)
+  ffmpeg-kit-lib)
     case ${ARCH} in
     arm64)
       echo "${ARCH_FLAGS} ${LINKED_LIBRARIES} ${COMMON_FLAGS} ${BITCODE_FLAGS} ${OPTIMIZATION_FLAGS}"
@@ -388,7 +388,7 @@ set_toolchain_paths() {
     (chmod +x "${FFMPEG_KIT_TMPDIR}"/gas-preprocessor.pl 1>>"${BASEDIR}"/build.log 2>&1) || return 1
 
     # patch gas-preprocessor.pl against the following warning
-    # Unescaped left brace in regex is deprecated here (and will be fatal in Perl 5.32), passed through in regex; marked by <-- HERE in m/(?:ld|st)\d\s+({ <-- HERE \s*v(\d+)\.(\d[bhsdBHSD])\s*-\s*v(\d+)\.(\d[bhsdBHSD])\s*})/ at /Users/taner/Projects/ffmpeg-kit/.tmp/gas-preprocessor.pl line 1065.
+    # Unescaped left brace in regex is deprecated here (and will be fatal in Perl 5.32), passed through in regex; marked by <-- HERE in m/(?:ld|st)\d\s+({ <-- HERE \s*v(\d+)\.(\d[bhsdBHSD])\s*-\s*v(\d+)\.(\d[bhsdBHSD])\s*})/ at /Users/taner/Projects/ffmpeg-kit-lib/.tmp/gas-preprocessor.pl line 1065.
     sed -i .tmp "s/s\+({/s\+(\\\\{/g;s/s\*})/s\*\\\\})/g" "${FFMPEG_KIT_TMPDIR}"/gas-preprocessor.pl
   fi
 

@@ -35,14 +35,14 @@ BUILD_TYPE_ID=""
 BUILD_VERSION=$(git describe --tags --always 2>>"${BASEDIR}"/build.log)
 
 # PROCESS LTS BUILD OPTION FIRST AND SET BUILD TYPE: MAIN OR LTS
-rm -f "${BASEDIR}"/android/ffmpeg-kit-android-lib/build.gradle 1>>"${BASEDIR}"/build.log 2>&1
-cp "${BASEDIR}"/tools/android/build.gradle "${BASEDIR}"/android/ffmpeg-kit-android-lib/build.gradle 1>>"${BASEDIR}"/build.log 2>&1
+rm -f "${BASEDIR}"/android/ffmpeg-kit-lib-android-lib/build.gradle 1>>"${BASEDIR}"/build.log 2>&1
+cp "${BASEDIR}"/tools/android/build.gradle "${BASEDIR}"/android/ffmpeg-kit-lib-android-lib/build.gradle 1>>"${BASEDIR}"/build.log 2>&1
 for argument in "$@"; do
   if [[ "$argument" == "-l" ]] || [[ "$argument" == "--lts" ]]; then
     enable_lts_build
     BUILD_TYPE_ID+="LTS "
-    rm -f "${BASEDIR}"/android/ffmpeg-kit-android-lib/build.gradle 1>>"${BASEDIR}"/build.log 2>&1
-    cp "${BASEDIR}"/tools/android/build.lts.gradle "${BASEDIR}"/android/ffmpeg-kit-android-lib/build.gradle 1>>"${BASEDIR}"/build.log 2>&1
+    rm -f "${BASEDIR}"/android/ffmpeg-kit-lib-android-lib/build.gradle 1>>"${BASEDIR}"/build.log 2>&1
+    cp "${BASEDIR}"/tools/android/build.lts.gradle "${BASEDIR}"/android/ffmpeg-kit-lib-android-lib/build.gradle 1>>"${BASEDIR}"/build.log 2>&1
   fi
 done
 
@@ -135,7 +135,7 @@ while [ ! $# -eq 0 ]; do
 
     export API=${API_LEVEL}
     ;;
-  --no-ffmpeg-kit-protocols)
+  --no-ffmpeg-kit-lib-protocols)
     export NO_FFMPEG_KIT_PROTOCOLS="1"
     ;;
   *)
@@ -175,11 +175,11 @@ if [[ -n ${DISPLAY_HELP} ]]; then
 fi
 
 # SET API LEVEL IN build.gradle
-${SED_INLINE} "s/minSdkVersion .*/minSdkVersion ${API}/g" "${BASEDIR}"/android/ffmpeg-kit-android-lib/build.gradle 1>>"${BASEDIR}"/build.log 2>&1
-${SED_INLINE} "s/versionCode ..0/versionCode ${API}0/g" "${BASEDIR}"/android/ffmpeg-kit-android-lib/build.gradle 1>>"${BASEDIR}"/build.log 2>&1
+${SED_INLINE} "s/minSdkVersion .*/minSdkVersion ${API}/g" "${BASEDIR}"/android/ffmpeg-kit-lib-android-lib/build.gradle 1>>"${BASEDIR}"/build.log 2>&1
+${SED_INLINE} "s/versionCode ..0/versionCode ${API}0/g" "${BASEDIR}"/android/ffmpeg-kit-lib-android-lib/build.gradle 1>>"${BASEDIR}"/build.log 2>&1
 
-echo -e "\nBuilding ffmpeg-kit ${BUILD_TYPE_ID}library for Android\n"
-echo -e -n "INFO: Building ffmpeg-kit ${BUILD_VERSION} ${BUILD_TYPE_ID}library for Android: " 1>>"${BASEDIR}"/build.log 2>&1
+echo -e "\nBuilding ffmpeg-kit-lib ${BUILD_TYPE_ID}library for Android\n"
+echo -e -n "INFO: Building ffmpeg-kit-lib ${BUILD_VERSION} ${BUILD_TYPE_ID}library for Android: " 1>>"${BASEDIR}"/build.log 2>&1
 echo -e "$(date)\n" 1>>"${BASEDIR}"/build.log 2>&1
 
 # PRINT BUILD SUMMARY
@@ -278,7 +278,7 @@ fi
 # BUILD FFMPEG-KIT
 if [[ -n ${ANDROID_ARCHITECTURES} ]]; then
 
-  echo -n -e "\nffmpeg-kit: "
+  echo -n -e "\nffmpeg-kit-lib: "
 
   # CREATE Application.mk FILE BEFORE STARTING THE NATIVE BUILD
   build_application_mk
@@ -290,7 +290,7 @@ if [[ -n ${ANDROID_ARCHITECTURES} ]]; then
   cd "${BASEDIR}"/android 1>>"${BASEDIR}"/build.log 2>&1 || exit 1
 
   # COPY EXTERNAL LIBRARY LICENSES
-  LICENSE_BASEDIR="${BASEDIR}"/android/ffmpeg-kit-android-lib/src/main/res/raw
+  LICENSE_BASEDIR="${BASEDIR}"/android/ffmpeg-kit-lib-android-lib/src/main/res/raw
   rm -f "${LICENSE_BASEDIR}"/*.txt 1>>"${BASEDIR}"/build.log 2>&1 || exit 1
   for library in {0..49}; do
     if [[ ${ENABLED_LIBRARIES[$library]} -eq 1 ]]; then
@@ -336,7 +336,7 @@ if [[ -n ${ANDROID_ARCHITECTURES} ]]; then
     cp "${BASEDIR}"/LICENSE "${LICENSE_BASEDIR}"/license.txt 1>>"${BASEDIR}"/build.log 2>&1 || exit 1
   fi
 
-  echo -e "DEBUG: Copied the ffmpeg-kit license successfully\n" 1>>"${BASEDIR}"/build.log 2>&1
+  echo -e "DEBUG: Copied the ffmpeg-kit-lib license successfully\n" 1>>"${BASEDIR}"/build.log 2>&1
 
   overwrite_file "${BASEDIR}"/tools/source/SOURCE "${LICENSE_BASEDIR}"/source.txt 1>>"${BASEDIR}"/build.log 2>&1 || exit 1
 
@@ -368,24 +368,24 @@ if [[ -n ${ANDROID_ARCHITECTURES} ]]; then
     echo -e -n "\nCreating Android archive under prebuilt: "
 
     # BUILD ANDROID ARCHIVE
-    rm -f "${BASEDIR}"/android/ffmpeg-kit-android-lib/build/outputs/aar/ffmpeg-kit-release.aar 1>>"${BASEDIR}"/build.log 2>&1
-    ./gradlew ffmpeg-kit-android-lib:clean ffmpeg-kit-android-lib:assembleRelease ffmpeg-kit-android-lib:testReleaseUnitTest 1>>"${BASEDIR}"/build.log 2>&1
+    rm -f "${BASEDIR}"/android/ffmpeg-kit-lib-android-lib/build/outputs/aar/ffmpeg-kit-lib-release.aar 1>>"${BASEDIR}"/build.log 2>&1
+    ./gradlew ffmpeg-kit-lib-android-lib:clean ffmpeg-kit-lib-android-lib:assembleRelease ffmpeg-kit-lib-android-lib:testReleaseUnitTest 1>>"${BASEDIR}"/build.log 2>&1
     if [ $? -ne 0 ]; then
       echo -e "failed\n"
       exit 1
     fi
 
     # COPY ANDROID ARCHIVE TO PREBUILT DIRECTORY
-    FFMPEG_KIT_AAR="${BASEDIR}/prebuilt/$(get_aar_directory)/ffmpeg-kit"
+    FFMPEG_KIT_AAR="${BASEDIR}/prebuilt/$(get_aar_directory)/ffmpeg-kit-lib"
     rm -rf "${FFMPEG_KIT_AAR}" 1>>"${BASEDIR}"/build.log 2>&1
     mkdir -p "${FFMPEG_KIT_AAR}" 1>>"${BASEDIR}"/build.log 2>&1
-    cp "${BASEDIR}"/android/ffmpeg-kit-android-lib/build/outputs/aar/ffmpeg-kit-release.aar "${FFMPEG_KIT_AAR}"/ffmpeg-kit.aar 1>>"${BASEDIR}"/build.log 2>&1
+    cp "${BASEDIR}"/android/ffmpeg-kit-lib-android-lib/build/outputs/aar/ffmpeg-kit-lib-release.aar "${FFMPEG_KIT_AAR}"/ffmpeg-kit-lib.aar 1>>"${BASEDIR}"/build.log 2>&1
     if [ $? -ne 0 ]; then
       echo -e "failed\n"
       exit 1
     fi
 
-    echo -e "INFO: Created ffmpeg-kit Android archive successfully.\n" 1>>"${BASEDIR}"/build.log 2>&1
+    echo -e "INFO: Created ffmpeg-kit-lib Android archive successfully.\n" 1>>"${BASEDIR}"/build.log 2>&1
     echo -e "ok\n"
   else
     echo -e "INFO: Skipped creating Android archive.\n" 1>>"${BASEDIR}"/build.log 2>&1

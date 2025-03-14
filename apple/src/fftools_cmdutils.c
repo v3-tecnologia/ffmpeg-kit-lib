@@ -24,15 +24,15 @@
 /*
  * This file is the modified version of cmdutils.c file living in ffmpeg source code under the fftools folder. We
  * manually update it each time we depend on a new ffmpeg version. Below you can see the list of changes applied
- * by us to develop mobile-ffmpeg and later ffmpeg-kit libraries.
+ * by us to develop mobile-ffmpeg and later ffmpeg-kit-lib libraries.
  *
- * ffmpeg-kit changes by ARTHENICA LTD
+ * ffmpeg-kit-lib changes by ARTHENICA LTD
  *
  * 07.2023
  * --------------------------------------------------------
  * - FFmpeg 6.0 changes migrated
  *
- * mobile-ffmpeg / ffmpeg-kit changes by Taner Sener
+ * mobile-ffmpeg / ffmpeg-kit-lib changes by Taner Sener
  *
  * 09.2022
  * --------------------------------------------------------

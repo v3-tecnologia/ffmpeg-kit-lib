@@ -281,7 +281,7 @@ create_ffmpeg_universal_library() {
 create_ffmpeg_kit_universal_library() {
   local ARCHITECTURE_VARIANT="$1"
   local TARGET_ARCHITECTURES=("$(get_apple_architectures_for_variant "${ARCHITECTURE_VARIANT}")")
-  local LIBRARY_NAME="ffmpeg-kit"
+  local LIBRARY_NAME="ffmpeg-kit-lib"
   local UNIVERSAL_LIBRARY_DIRECTORY="${BASEDIR}/.tmp/$(get_universal_library_directory "${ARCHITECTURE_VARIANT}")"
   local FFMPEG_KIT_UNIVERSAL_LIBRARY_DIRECTORY="${UNIVERSAL_LIBRARY_DIRECTORY}/${LIBRARY_NAME}"
   local LIPO="$(xcrun --sdk "$(get_default_sdk_name)" -f lipo)"
@@ -297,7 +297,7 @@ create_ffmpeg_kit_universal_library() {
   initialize_folder "${FFMPEG_KIT_UNIVERSAL_LIBRARY_DIRECTORY}/include"
   initialize_folder "${FFMPEG_KIT_UNIVERSAL_LIBRARY_DIRECTORY}/lib"
 
-  local FFMPEG_KIT_DEFAULT_BUILD_PATH="${BASEDIR}/prebuilt/$(get_default_build_directory)/ffmpeg-kit"
+  local FFMPEG_KIT_DEFAULT_BUILD_PATH="${BASEDIR}/prebuilt/$(get_default_build_directory)/ffmpeg-kit-lib"
 
   # COPY HEADER FILES
   cp -r "${FFMPEG_KIT_DEFAULT_BUILD_PATH}"/include/* "${FFMPEG_KIT_UNIVERSAL_LIBRARY_DIRECTORY}"/include 1>>"${BASEDIR}"/build.log 2>&1 || exit 1
@@ -447,7 +447,7 @@ create_ffmpeg_framework() {
 #
 create_ffmpeg_kit_framework() {
   local ARCHITECTURE_VARIANT="$1"
-  local LIBRARY_NAME="ffmpeg-kit"
+  local LIBRARY_NAME="ffmpeg-kit-lib"
   local UNIVERSAL_LIBRARY_DIRECTORY="${BASEDIR}/.tmp/$(get_universal_library_directory "${ARCHITECTURE_VARIANT}")"
   local FFMPEG_KIT_UNIVERSAL_LIBRARY_DIRECTORY="${UNIVERSAL_LIBRARY_DIRECTORY}/${LIBRARY_NAME}"
 
@@ -518,7 +518,7 @@ create_ffmpeg_kit_framework() {
   build_info_plist "${FFMPEG_KIT_FRAMEWORK_RESOURCE_PATH}/Info.plist" "ffmpegkit" "com.arthenica.ffmpegkit.FFmpegKit" "${FFMPEG_KIT_VERSION}" "${FFMPEG_KIT_VERSION}" "${ARCHITECTURE_VARIANT}"
   build_modulemap "${FFMPEG_KIT_FRAMEWORK_PATH}/Modules/module.modulemap"
 
-  echo -e "DEBUG: ffmpeg-kit framework built for $(get_apple_architecture_variant "${ARCHITECTURE_VARIANT}") platform successfully\n" 1>>"${BASEDIR}"/build.log 2>&1
+  echo -e "DEBUG: ffmpeg-kit-lib framework built for $(get_apple_architecture_variant "${ARCHITECTURE_VARIANT}") platform successfully\n" 1>>"${BASEDIR}"/build.log 2>&1
 }
 
 create_ffmpeg_xcframework() {
@@ -591,7 +591,7 @@ create_ffmpeg_kit_xcframework() {
     exit_xcframework "${FRAMEWORK_NAME}"
   fi
 
-  echo -e "DEBUG: xcframework for ffmpeg-kit built successfully\n" 1>>"${BASEDIR}"/build.log 2>&1
+  echo -e "DEBUG: xcframework for ffmpeg-kit-lib built successfully\n" 1>>"${BASEDIR}"/build.log 2>&1
 }
 
 #

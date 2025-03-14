@@ -4,5 +4,5 @@
 /.gradle/
 /libs/
 /obj/
-/ffmpeg-kit-android-lib/build/
+/ffmpeg-kit-lib-android-lib/build/
 *.tmp

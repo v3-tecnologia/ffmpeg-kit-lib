@@ -240,9 +240,9 @@ fi
 if [[ ${SKIP_ffmpeg_kit} -ne 1 ]]; then
 
   # BUILD FFMPEG KIT
-  . "${BASEDIR}"/scripts/apple/ffmpeg-kit.sh "$@" || return 1
+  . "${BASEDIR}"/scripts/apple/ffmpeg-kit-lib.sh "$@" || return 1
 else
-  echo -e "\nffmpeg-kit: skipped"
+  echo -e "\nffmpeg-kit-lib: skipped"
 fi
 
 echo -e "\nINFO: Completed build for ${ARCH} at $(date)\n" 1>>"${BASEDIR}"/build.log 2>&1

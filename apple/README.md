@@ -29,7 +29,7 @@
 
 ### 2. Building
 
-Run `ios.sh`/`macos.sh`/`tvos.sh` inside the project root to build `ffmpeg-kit` and `ffmpeg` shared libraries
+Run `ios.sh`/`macos.sh`/`tvos.sh` inside the project root to build `ffmpeg-kit-lib` and `ffmpeg` shared libraries
 for a platform.
 
 Optionally, use `apple.sh` to combine bundles created by these three scripts in a single bundle.
@@ -105,22 +105,22 @@ All libraries created can be found under the `prebuilt` directory.
 
 #### 3.1 Objective API
 
-1. Add `FFmpegKit` dependency to your `Podfile` in `ffmpeg-kit-<platform>-<package name>` pattern. Use one of the 
-   `FFmpegKit` package names given in the project [README](https://github.com/arthenica/ffmpeg-kit).
+1. Add `FFmpegKit` dependency to your `Podfile` in `ffmpeg-kit-lib-<platform>-<package name>` pattern. Use one of the 
+   `FFmpegKit` package names given in the project [README](https://github.com/arthenica/ffmpeg-kit-lib).
 
     - iOS
     ```yaml
-    pod 'ffmpeg-kit-ios-full', '~> 6.0'
+    pod 'ffmpeg-kit-lib-ios-full', '~> 6.0'
     ```
 
     - macOS
     ```yaml
-    pod 'ffmpeg-kit-macos-full', '~> 6.0'
+    pod 'ffmpeg-kit-lib-macos-full', '~> 6.0'
     ```
 
     - tvOS
     ```yaml
-    pod 'ffmpeg-kit-tvos-full', '~> 6.0'
+    pod 'ffmpeg-kit-lib-tvos-full', '~> 6.0'
     ```
 
 2. Execute synchronous `FFmpeg` commands.
@@ -311,4 +311,4 @@ All libraries created can be found under the `prebuilt` directory.
 ### 4. Test Application
 
 You can see how `FFmpegKit` is used inside an application by running `iOS`, `macOS` and `tvOS` test applications 
-developed under the [FFmpegKit Test](https://github.com/arthenica/ffmpeg-kit-test) project.
+developed under the [FFmpegKit Test](https://github.com/arthenica/ffmpeg-kit-lib-test) project.

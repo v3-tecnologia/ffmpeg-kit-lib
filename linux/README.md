@@ -8,7 +8,7 @@
 
 ### 2. Building
 
-Run `linux.sh` at project root directory to build `ffmpeg-kit` and `ffmpeg` shared libraries. 
+Run `linux.sh` at project root directory to build `ffmpeg-kit-lib` and `ffmpeg` shared libraries. 
 
 Please note that `FFmpegKit` project repository includes the source code of `FFmpegKit` only. `linux.sh` needs 
 network connectivity and internet access to `github.com` in order to download the source code of `FFmpeg` and 
@@ -282,4 +282,4 @@ Then, you can use the following API methods to execute `FFmpeg` and `FFprobe` co
 ### 4. Test Application
 
 You can see how `FFmpegKit` is used inside an application by running `Linux` test applications developed under the
-[FFmpegKit Test](https://github.com/arthenica/ffmpeg-kit-test) project.
+[FFmpegKit Test](https://github.com/arthenica/ffmpeg-kit-lib-test) project.

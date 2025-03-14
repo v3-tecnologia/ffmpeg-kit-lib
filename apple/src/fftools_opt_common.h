@@ -22,9 +22,9 @@
 /*
  * This file is the modified version of opt_common.h file living in ffmpeg source code under the fftools folder. We
  * manually update it each time we depend on a new ffmpeg version. Below you can see the list of changes applied
- * by us to develop the ffmpeg-kit library.
+ * by us to develop the ffmpeg-kit-lib library.
  *
- * ffmpeg-kit changes by Taner Sener
+ * ffmpeg-kit-lib changes by Taner Sener
  *
  * 09.2022
  * --------------------------------------------------------

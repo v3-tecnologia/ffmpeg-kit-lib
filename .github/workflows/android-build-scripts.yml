@@ -145,8 +145,8 @@ jobs:
       - name: print ffbuild logs
         if: ${{ failure() }}
         run: '[[ -f ./src/ffmpeg/ffbuild/config.log ]] && tail -50 ./src/ffmpeg/ffbuild/config.log'
-  build-main-without-ffmpeg-kit-protocols-on-linux:
-    name: build without ffmpeg-kit protocols
+  build-main-without-ffmpeg-kit-lib-protocols-on-linux:
+    name: build without ffmpeg-kit-lib protocols
     runs-on: ubuntu-22.04
     strategy:
       matrix:
@@ -169,7 +169,7 @@ jobs:
           unzip -q -o ndk.zip -d .ndk
           echo "ANDROID_NDK_ROOT=$PWD/.ndk/$(ls .ndk)" >> $GITHUB_ENV
       - name: run the build script
-        run: ./android.sh --no-ffmpeg-kit-protocols --disable-x86 --disable-x86-64 --disable-arm-v7a --disable-arm-v7a-neon
+        run: ./android.sh --no-ffmpeg-kit-lib-protocols --disable-x86 --disable-x86-64 --disable-arm-v7a --disable-arm-v7a-neon
       - name: print build logs
         if: ${{ always() }}
         run: cat build.log
